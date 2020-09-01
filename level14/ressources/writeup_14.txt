@@ -126,8 +126,8 @@ Nous avons bypassé ptrace, maintenant, rendons nous sur notre prochain breakpoi
 
   $ c                <----- continue (passer au prochain breakpoint)
   
-Comme nous executon notre binaire avec le user 'level14' nous devons nous attendre à ce que getuid nous renvoi la valeur 2014 dans eax.
-Pourquoi 2014 ? Car si nous lisons le contenu de /etc/passwd, nous pouvons que l'uid associé au user level14 est 2014. 
+Comme nous executons notre binaire avec le user 'level14' nous devons nous attendre à ce que getuid nous renvoi la valeur 2014 dans eax.
+Pourquoi 2014 ? Car si nous lisons le contenu de /etc/passwd, nous pouvons voir que l'uid associé au user level14 est 2014. 
 Steppons dans le binaire jusqu'à ce que notre registre eax vaille 2014 (0x7de) : 
 
  $ ni                <---- next instruction
