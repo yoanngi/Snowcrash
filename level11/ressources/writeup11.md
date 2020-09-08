@@ -82,7 +82,7 @@ Avec quelques recherche sur les vulnératbilités de ce language, la fonction io
 *OS command injection flaws (CWE-78) allow attackers to run arbitrary commands on the remote server. Because a command injection vulnerability may lead to compromise of the server hosting the web application, it is often considered a very serious flaw. In Lua, this kind of vulnerability occurs, for example, when a developer uses unvalidated user data to run operating system commands via the os.execute() or io.popen() Lua functions.*
 *Source:* https://www.syhunt.com/en/index.php?n=Articles.LuaVulnerabilities 
 
-### Exploitation
+### Exploitation
 
 On va simplement faire une injection de commande :)
 ```
