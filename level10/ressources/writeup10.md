@@ -56,15 +56,12 @@ wrote file!
 ```
 Sa marche, maintenant intéressons nous a comment l'exploité ?
 
-La fonction qui nous interesse (access) nous permet de faire une attaque de type : **Time-of-check to time-of-use (TOCTOU)**
-https://samsclass.info/127/proj/E10.htm
+La fonction qui nous interesse (access) nous permet de faire une attaque de type : <a href="https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use">Time-of-check to time-of-use (**TOCTOU**)</a>
+
+On a d'ailleur un super tutoriel <a href="https://samsclass.info/127/proj/E10.htm">ici</a>
 
 Cette attaque joue sur le temps entre le moment ou le programme check l'acces (avec la fonction access) et le moment ou il ouvre le fichier:
 
-```
-	access (/tmp/flip) --> a ce moment la, il est link avec le fichier /tmp/public = on a l'access
-	open(/tmp/flip...) --> a ce moment, il est link avec le fichier token, on a théoriquement pas l'acces mais le binaire dispose des droits SUID.
-```
 
 Ok, maintenant qu'on a compris comment sa fonctionne on passe a la pratique !
 
