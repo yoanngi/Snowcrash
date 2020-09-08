@@ -1,6 +1,6 @@
 # LEVEL 13
 
-### Reconnaissance
+### Reconnaissance
 
 On se connecte sur l'user level13
 
@@ -57,7 +57,7 @@ Pas de protection anti débug, pas de protection sur LD_PRELOAD, un appel a getu
 │           0x08048595      e8e6fdffff     call sym.imp.getuid         ; uid_t getuid(void)
 ```
 
-### Exploitation
+### Exploitation
 
 On va donc importé notre propre fonction:
 
