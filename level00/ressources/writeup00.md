@@ -1,4 +1,4 @@
-#level 00
+# LEVEL 00
 
 On commence par la reconnaissance, notre cible est *flag00*. Partant de là, on chercher si un fichier fait partis de ce groupe:
 
