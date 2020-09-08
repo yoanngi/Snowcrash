@@ -1,7 +1,10 @@
-#1 - Reconnaissance:
+# LEVEL 01
 
-Pendant la reconnaissance on a pu lire dans le fichier /etc/passwd :
+### Reconnaissance:
 
+Lors de la reconnaissance, on peux afficher le fichier /etc/passwd qui nous permet de voir des différents utilisateurs:
+
+```
 $ cat /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
@@ -57,19 +60,27 @@ flag11:x:3011:3011::/home/flag/flag11:/bin/bash
 flag12:x:3012:3012::/home/flag/flag12:/bin/bash
 flag13:x:3013:3013::/home/flag/flag13:/bin/bash
 flag14:x:3014:3014::/home/flag/flag14:/bin/bash
+```
 
-Cette ligne est particulièrement intéréssante:
--> flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+Cette ligne attire notre attention:
+
+```
+flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+```
 
 le mot de passe n'est pas stocker dans le fichier /etc/shadow mais directement dans un fichier lisible par tous les utilisateurs.
 
-# - 2 Exploitation
+### Exploitation
+
 Une fois le hash connu, il est simple de le bruteforce. Pour cela on va utilisé hashcat, logiciel très puissant. La seul difficulté ici est d'identifier le type de hash (DES (Unix)) pour trouvé la bonne commande a utilisé.
+
 Pour s'aider, on peux consulté le site suivant : https://hashcat.net/wiki/doku.php?id=example_hashes
 
+```
 $ hashcat -m 1500 pwd_flag01.txt -o pwd_decode.txt /usr/share/wordlists/rockyou.txt
 [...]
-Dans le fichier pwd_decode.txt, on peux lire:
-42hDRfypTqqnw:abcdefg
+```
+
+Et le mot de passe est (dans le fichier pwd_decode.txt): **42hDRfypTqqnw:abcdefg**
 
 Il suffit maintenant de se connecté au compte flag01 avec la commande su flag01 et le mot de passe associer.
