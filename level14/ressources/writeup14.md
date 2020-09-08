@@ -89,11 +89,12 @@ On a plus qu'a reconstruire le code et on poura décodé le flag! A la main, on 
 ### Exploitation
 
 On va utilisé Ghidra : https://ghidra-sre.org/
+
 *Ghidra is one of many open source software (OSS) projects developed within the National Security Agency.*
 
 Ghidra va nous décompilé le projet et nous permettre d'extraire la fonction ft_des en C. On a plus qu'a corrigé les éventuelles défaut de compilation.
 
-![img ghidra](./ghidra.png)
+![img ghidra](./GHIDRA_SCREEN.png)
 
 Après quelques modification, on a plus qu'a compiler:
 ```
@@ -111,56 +112,61 @@ flag14@SnowCrash:~$ getflag
 Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
 ```
 
-=========================================================================================================================
-===================================================== ALTERNATIVE =======================================================
-=========================================================================================================================
+### Exploitation v2
 
 Il est egalement possible d'obtenir le token durant l'execution du binaire. Pour cela il suffit de l'ouvrir avec gdb :
+```
+$ gdb /bin/getflag
+```
 
-    $ gdb /bin/getflag
-    
 Puis de placer un breakpoint juste après l'appel à ptrace :
-    
-    $ b*main+72
-    
-Puis ensuite de placer un breakpoint sur getuid :
-    
-    $ b*getuid
-    
-Il suffit maintenant de run le binaire :
+```
+$ b*main+72
+```
 
-    $ r               <---- run 
-    
+Puis ensuite de placer un breakpoint sur getuid :
+```
+$ b*getuid
+```
+
+Il suffit maintenant de run le binaire :
+```
+$ r               <---- run 
+```
+
 Nous nous trouvons maintenant sur notre premier breakpoint (celui juste apres ptrace). Comme nous utilisons un debugger, ptrace
 va retourner -1 et le programme va exit. La valeur retournée est evidemment stockée dans le registre eax. Il suffit donc de remplacer
 sa valeur par 0 :
+```
+$ set $eax=0
+```
 
-  $ set $eax=0
-  
 Nous avons bypassé ptrace, maintenant, rendons nous sur notre prochain breakpoint (celui sur getuid). 
+```
+$ c                <----- continue (passer au prochain breakpoint)
+```  
 
-  $ c                <----- continue (passer au prochain breakpoint)
-  
 Comme nous executons notre binaire avec le user 'level14' nous devons nous attendre à ce que getuid nous renvoi la valeur 2014 dans eax.
 Pourquoi 2014 ? Car si nous lisons le contenu de /etc/passwd, nous pouvons voir que l'uid associé au user level14 est 2014. 
 Steppons dans le binaire jusqu'à ce que notre registre eax vaille 2014 (0x7de) : 
-
+```
  $ ni                <---- next instruction
  $ ni
  $ i r               <---- permet d'afficher la valeur des regitres et des eflags
-
+```
 
 Nous pouvons maintenant procéder de la même manière que quand nous avons écrasé le retour de ptrace, sauf que cette fois-ci, la valeur qui nous intéresse
 est tout simplement la valeur de l'uid du user flag14. Dans /etc/passwd, nous pouvons voir qu'il s'agit de l'uid 3014. Remplacons-le : 
-
+```
  $ set $eax=3014
- 
- Maintenant il ne nous reste plus qu'à stepper dans le binaire jusqu'à ce que le Saint-Graal fasse son apparition ! : 
- 
+```
+
+Maintenant il ne nous reste plus qu'à stepper dans le binaire jusqu'à ce que le Saint-Graal fasse son apparition ! : 
+``` 
  $ ni                <---- autant de fois que necessaire
+```
 
-
-Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
+Check flag.Here is your token : **7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ**
 
 Enjoy :)
 
