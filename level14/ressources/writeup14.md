@@ -1,8 +1,13 @@
-Quand on se connecte au level14, on a RIEN, NADA
+# LEVEL 14
+
+### Reconnaissance
+
+Quand on se connecte au level14, on a **RIEN**, **NADA**
 
 Bon, on va s'attaqué au binaire getflag
 
 On le télécharge sur notre machine et on l'ouvre avec r2:
+```
 │ │╎│││││   0x08048adc      b86c900408     mov eax, str.Check_flag.Here_is_your_token_: ; 0x804906c ; "Check flag.Here is your token : "
 │ │╎│││││   0x08048ae1      8954240c       mov dword [stream], edx     ; FILE *stream
 │ │╎│││││   0x08048ae5      c74424082000.  mov dword [nitems], 0x20    ; [0x20:4]=-1 ; 32 ; size_t nitems
@@ -53,17 +58,21 @@ On le télécharge sur notre machine et on l'ouvre avec r2:
 │ │╎│││││   0x08048bb6      3dc60b0000     cmp eax, 0xbc6              ; 3014
 │ ────────< 0x08048bbb      0f8424020000   je 0x8048de5
 │ ────────< 0x08048bc1      e940020000     jmp 0x8048e06
-
+```
 
 Ici on peux voir la ou on jump en fonction de son uid (3014 = flag14)
+```
 │ │╎│││││   0x08048bb6      3dc60b0000     cmp eax, 0xbc6              ; 3014
 │ ────────< 0x08048bbb      0f8424020000   je 0x8048de5
+```
 
 Extrait du fichier /etc/passwd:
+```
 flag14:x:3014:3014::/home/flag/flag14:/bin/bash
-
+```
 
 Allons voir ce qu'il se passe au jump:
+```
 0x08048de5      a160b00408     mov eax, dword [obj.stdout] ; obj.stdout__GLIBC_2.0
 │ │╎│││││                                                              ; [0x804b060:4]=0
 │ │╎│││││   0x08048dea      89c3           mov ebx, eax
@@ -72,29 +81,35 @@ Allons voir ce qu'il se passe au jump:
 │ │╎│││││   0x08048df8      895c2404       mov dword [oflag], ebx      ; FILE *stream
 │ │╎│││││   0x08048dfc      890424         mov dword [esp], eax        ; const char *s
 │ │╎│││││   0x08048dff      e82cf7ffff     call sym.imp.fputs          ; int fputs(const char *s, FILE *stream)
-
+```
 On a donc une clef qui est envoyer a la fonction ft_des : "g <t61:|4_|!@IF.-62FH&G~DCK/Ekrvvdwz?v|"
 
-On a plus qu'a reconstruire le code et on poura décodé le flag! A la main, on va en avoir pour un moment ... mais des outils existe.
+On a plus qu'a reconstruire le code et on poura décodé le flag! A la main, on va en avoir pour un moment ... mais des outils existe :).
+
+### Exploitation
+
 On va utilisé Ghidra : https://ghidra-sre.org/
-"Ghidra is one of many open source software (OSS) projects developed within the National Security Agency. "
+*Ghidra is one of many open source software (OSS) projects developed within the National Security Agency.*
 
 Ghidra va nous décompilé le projet et nous permettre d'extraire la fonction ft_des en C. On a plus qu'a corrigé les éventuelles défaut de compilation.
-(voir screen pour la correction)
+
+![img ghidra](./ghidra.png)
 
 Après quelques modification, on a plus qu'a compiler:
+```
 $ gcc ressources/ft_des.c -o getflag
 $ ./getflag
 flag = 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
-
+```
 En retournant sur notre machine snowcrash:
 
+```
 level14@SnowCrash:~$ su flag14
 Password: 
 Congratulation. Type getflag to get the key and send it to me the owner of this livecd :)
 flag14@SnowCrash:~$ getflag 
 Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
-
+```
 
 =========================================================================================================================
 ===================================================== ALTERNATIVE =======================================================
