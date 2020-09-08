@@ -34,8 +34,9 @@ tcp6       0      0 :::4242                 :::*                    LISTEN      
 udp        0      0 0.0.0.0:68              0.0.0.0:*                           0          12114       -   
 ```
 
-### Exploitation
-*Pour comprendre les CGI perl --> http://www.dil.univ-mrs.fr/~chris/Documents/CGI**
+### Exploitation
+
+*Pour comprendre les CGI perl --> http://www.dil.univ-mrs.fr/~chris/Documents/CGI*
 
 En se rendant sur IP:4747 on a une page blanche
 
