@@ -1,4 +1,4 @@
-# LEVEL 06
+# LEVEL 06
 
 ### Reconnaissance
 
@@ -19,9 +19,9 @@ d--x--x--x  1 root    users    340 Aug 30  2015 ..
 - un binaire (level06)
 - un fichier php (level06.php)
 
-### Exploitation
+### Exploitation
 
-en analysant le fichier php on peux voir une vulnérabilitée:
+En analysant le fichier php on peux voir une vulnérabilitée:
 
 ```
 PREG_REPLACE_EVAL : /e --> [...]$a = preg_replace("/(\[x (.*)\])/e"[...]
