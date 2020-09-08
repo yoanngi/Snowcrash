@@ -1,5 +1,10 @@
+# LEVEL 04
+
+### Reconnaissance
+
 En se connectant sur le compte level04, on trouve un script perl:
 
+```
 level04@SnowCrash:~$ cat level04.pl 
 #!/usr/bin/perl
 # localhost:4747
@@ -12,10 +17,10 @@ sub x {
 x(param("x"));
 level04@SnowCrash:~$ ./level04.pl 
 Content-type: text/html
+```
 
-
-
-Lors de la reconnaissance, nous avons pu remarqué qu'il y a le port 4747 en ecoute:
+Efdfectivement le port 4747 est bien en ecoute:
+```
 level04@SnowCrash:~$ netstat -tulpen
 (No info could be read for "-p": geteuid()=2004 but you should be root.)
 Active Internet connections (only servers)
@@ -27,12 +32,14 @@ tcp6       0      0 :::4747                 :::*                    LISTEN      
 tcp6       0      0 :::80                   :::*                    LISTEN      0          10646       -               
 tcp6       0      0 :::4242                 :::*                    LISTEN      0          12558       -               
 udp        0      0 0.0.0.0:68              0.0.0.0:*                           0          12114       -   
+```
 
+### Exploitation
+*Pour comprendre les CGI perl --> http://www.dil.univ-mrs.fr/~chris/Documents/CGI**
 
-# Pour comprendre les CGI perl --> http://www.dil.univ-mrs.fr/~chris/Documents/CGI
 En se rendant sur IP:4747 on a une page blanche
 
-En analysant le script on voir qu'il nous renvoit ce qu'on passe en argument:
+En testant le script on voir qu'il nous renvoit ce qu'on passe en argument:
 http://192.168.56.105:4747/?x=/bin/ls
 /bin/ls
 
