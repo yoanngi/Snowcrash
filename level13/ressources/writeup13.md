@@ -1,5 +1,10 @@
+# LEVEL 13
+
+### Reconnaissance
+
 On se connecte sur l'user level13
 
+```
 level13@SnowCrash:~$ ls -la
 total 20
 dr-x------ 1 level13 level13  120 Mar  5  2016 .
@@ -10,11 +15,12 @@ d--x--x--x 1 root    users    340 Aug 30  2015 ..
 -r-x------ 1 level13 level13  675 Apr  3  2012 .profile
 level13@SnowCrash:~$ ./level13 
 UID 2013 started us but we we expect 4242
+```
 
-
-Il cherche un certain uid pour nous donnée le token
+Le programme cherche un certain uid pour nous donnée le token
 On télécharge le binaire et on le reverse avec r2:
 
+```
 [0x080483c0]> pdf@main
             ; DATA XREF from entry0 @ 0x80483d7
 ┌ 94: int main (int argc, char **argv, char **envp);
@@ -44,13 +50,18 @@ On télécharge le binaire et on le reverse avec r2:
 │           0x080485e3      e878fdffff     call sym.imp.printf         ; int printf(const char *format)
 │           0x080485e8      c9             leave
 └           0x080485e9      c3             ret
-
+```
 
 Pas de protection anti débug, pas de protection sur LD_PRELOAD, un appel a getuid.
+```
 │           0x08048595      e8e6fdffff     call sym.imp.getuid         ; uid_t getuid(void)
+```
+
+### Exploitation
 
 On va donc importé notre propre fonction:
 
+```
 $ cat ressources/getuid.c 
 #include <unistd.h>
 
@@ -65,14 +76,13 @@ uid_t	getgid(void)
 }
 
 $ gcc -shared -fPIC -m32 ressources/getuid.c -o lib.so
-$ $ env -i LD_PRELOAD=./lib.so ./level13_binary
+$ env -i LD_PRELOAD=./lib.so ./level13_binary
 your token is 2A31L79asukciNyi8uppkEuSx
 (gdb) n
 Single stepping until exit from function main,
 which has no line number information.
 getuid
 your token is 2A31L79asukciNyi8uppkEuSx
-		2A31L79asukciNyi8uppkEuSx
-
+```
 
 
