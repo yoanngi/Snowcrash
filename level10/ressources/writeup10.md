@@ -1,4 +1,4 @@
-# LEVEL 10
+# LEVEL 10
 
 ### Reconnaissance
 
@@ -57,7 +57,7 @@ wrote file!
 Sa marche, maintenant intéressons nous a comment l'exploité ?
 
 La fonction qui nous interesse (access) nous permet de faire une attaque de type : **Time-of-check to time-of-use (TOCTOU)**
---> https://samsclass.info/127/proj/E10.htm
+https://samsclass.info/127/proj/E10.htm
 
 Cette attaque joue sur le temps entre le moment ou le programme check l'acces (avec la fonction access) et le moment ou il ouvre le fichier:
 
@@ -68,12 +68,12 @@ Cette attaque joue sur le temps entre le moment ou le programme check l'acces (a
 
 Ok, maintenant qu'on a compris comment sa fonctionne on passe a la pratique !
 
-### Exploitation
+### Exploitation
 
 
 On ouvre 2 connections ssh:
-	- la première pour nos commande
-	- la deuxième pour recevoir les infos avec nc.
+- la première pour nos commande
+- la deuxième pour recevoir les infos avec nc.
 	
 - **1er terminal**
 ```
@@ -102,7 +102,7 @@ On ouvre 2 connections ssh:
 	[...]
 ```
 
-Et voila, le mot de passe pour l'user flag10 est woupa2yuojeeaaed06riuj63c
+Et voila, le mot de passe pour l'user flag10 est: **woupa2yuojeeaaed06riuj63c**
 
 *ps : le mot de passe fonctionne pour l'user flag11*
 	
