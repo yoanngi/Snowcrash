@@ -3,19 +3,22 @@
 ### Reconnaissance
 
 Une fois connecter la l'utilisateur level02, on peux voir un fichier de capture reseau (pcap) nommer level02.pcap.
-On va le téléchargé et l'analyser:
 
+### Exploitation
+
+On télécharge le fichier pour l'analyser:
 ```
 $ scp level02.pcap yoginet@192.168.56.1:/home/yoginet/Documents/101/snowcrash/level02.pcap
 ```
 
-2 choix s'offre a nous, la version graphique:
+Maintenant, 2 choix s'offre a nous:
 
+- **la version graphique**
 ```
 $ wireshark level02.pcap
 ```
 
-ou la version en ligne de commande (celle que nous allons utilisé):
+- **la version en ligne de commande** (celle que nous allons utilisé):
 ```
 $ tshark -r level02.pcap -T fields -e data
 // permet de nous lister l'ensemble des paquets
