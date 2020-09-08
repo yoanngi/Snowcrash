@@ -39,7 +39,9 @@ level06@SnowCrash:~$ vim /tmp/exploit
 ```
 [x        ]	--> code a remplacer sur le preg_replace
 ${}	    	--> https://www.php.net/manual/en/language.types.string.php#language.types.string.parsing.complex
-``	   --> revient a faire un shell_exec() mais avec l'avantage ici de ne pas devoir inseré de quote ni de parenthèse.         https://stackoverflow.com/questions/3115559/exploitable-php-functions
+``	      --> revient a faire un shell_exec() mais avec l'avantage ici de ne pas devoir inseré de quote ni de parenthèse.    
+
+https://stackoverflow.com/questions/3115559/exploitable-php-functions
 ```
 
 ```
