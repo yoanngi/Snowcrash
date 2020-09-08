@@ -1,3 +1,22 @@
+# LEVEL 08
+
+### Reconnaissance
+
+Une fois connecté, on trouve un binaire et un fichier token
+```
+level08@SnowCrash:~$ ls -la
+total 28
+dr-xr-x---+ 1 level08 level08  140 Mar  5  2016 .
+d--x--x--x  1 root    users    340 Aug 30  2015 ..
+-r-x------  1 level08 level08  220 Apr  3  2012 .bash_logout
+-r-x------  1 level08 level08 3518 Aug 30  2015 .bashrc
+-rwsr-s---+ 1 flag08  level08 8617 Mar  5  2016 level08
+-r-x------  1 level08 level08  675 Apr  3  2012 .profile
+-rw-------  1 flag08  flag08    26 Mar  5  2016 token
+```
+On l'analyse avec r2:
+
+```
 [0x080484a0]> pdf@main
             ; DATA XREF from entry0 @ 0x80484b7
 ┌ 336: int main (uint32_t arg_8h, int32_t arg_ch, int32_t arg_10h);
@@ -97,19 +116,12 @@
 │       │   ; CODE XREF from main @ 0x804869b
 │       └─> 0x080486a2      c9             leave
 └           0x080486a3      c3             ret
+```
+### Exploitation
 
+On va creer un lien symbolique entre token et notre fichier
 
-
-level08@SnowCrash:~$ ls -la
-total 28
-dr-xr-x---+ 1 level08 level08  140 Mar  5  2016 .
-d--x--x--x  1 root    users    340 Aug 30  2015 ..
--r-x------  1 level08 level08  220 Apr  3  2012 .bash_logout
--r-x------  1 level08 level08 3518 Aug 30  2015 .bashrc
--rwsr-s---+ 1 flag08  level08 8617 Mar  5  2016 level08
--r-x------  1 level08 level08  675 Apr  3  2012 .profile
--rw-------  1 flag08  flag08    26 Mar  5  2016 token
-
+```
 level08@SnowCrash:~$ ln -s ./token /tmp/test
 level08@SnowCrash:~$ file /tmp/test
 /tmp/test: broken symbolic link to `./token'
@@ -123,9 +135,4 @@ Password:
 Don't forget to launch getflag !
 flag08@SnowCrash:~$ getflag 
 Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
-
-
-
-
-
-
+```
