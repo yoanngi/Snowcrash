@@ -1,6 +1,6 @@
-# LEVEL 05
+# LEVEL 05
 
-### Reconnaissance
+### Reconnaissance
 
 On se connecte au level05:
 ```
@@ -27,7 +27,8 @@ done
 
 Le programme va lire dans le répertoire /opt/openarenaserver et execute bash -x [nom du fichier]
 
-### Exploitation
+### Exploitation
+
 Creons un fichier avec un lien symbolic :) et attendons un peu ...
 
 ```
