@@ -1,6 +1,6 @@
 # LEVEL 02
 
-###Reconnaissance
+### Reconnaissance
 
 Une fois connecter la l'utilisateur level02, on peux voir un fichier de capture reseau (pcap) nommer level02.pcap.
 On va le téléchargé et l'analyser:
