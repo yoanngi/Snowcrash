@@ -10,7 +10,7 @@ level03: setuid setgid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV),
 $ level03@SnowCrash:~$ ls -la level03 
 -rwsr-sr-x 1 flag03 level03 8627 Mar  5  2016 level03
 ```
-### Exploitation
+### Exploitation
 
 Quand on le lance, la sortie nous donne "Exploit me".
 
