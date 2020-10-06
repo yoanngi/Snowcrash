@@ -77,10 +77,69 @@ Une fois le hash connu, il est simple de le bruteforce. Pour cela on va utilisé
 Pour s'aider, on peux consulté le site suivant : https://hashcat.net/wiki/doku.php?id=example_hashes
 
 ```
-$ hashcat -m 1500 pwd_flag01.txt -o pwd_decode.txt /usr/share/wordlists/rockyou.txt
-[...]
+yoginet@kali:~/Documents/101/git_snowcrash$ hashcat -m 1500 42hDRfypTqqnw /usr/share/wordlists/rockyou.txt
+hashcat (v6.1.1) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.5, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 5725/5789 MB (2048 MB allocatable), 8MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 8
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers applied:
+* Zero-Byte
+* Not-Iterated
+* Single-Hash
+* Single-Salt
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required for this attack: 66 MB
+
+Dictionary cache built:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344392
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+* Runtime...: 1 sec
+
+42hDRfypTqqnw:abcdefg                            
+                                                 
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: descrypt, DES (Unix), Traditional DES
+Hash.Target......: 42hDRfypTqqnw
+Time.Started.....: Tue Oct  6 11:01:19 2020 (0 secs)
+Time.Estimated...: Tue Oct  6 11:01:19 2020 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:    92940 H/s (4.38ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 9612/14344385 (0.07%)
+Rejected.........: 1420/9612 (14.77%)
+Restore.Point....: 0/14344385 (0.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: 123456 -> dancer12
+
+Started: Tue Oct  6 11:00:46 2020
+Stopped: Tue Oct  6 11:01:20 2020
+
 ```
 
 Et le mot de passe est (dans le fichier pwd_decode.txt): **42hDRfypTqqnw:abcdefg**
 
 Il suffit maintenant de se connecté au compte flag01 avec la commande su flag01 et le mot de passe associer.
+
+```
+level01@SnowCrash:~$ su flag01
+Password:                                                                                        
+Don't forget to launch getflag !                                                                 
+flag01@SnowCrash:~$ getflag                                                                      
+Check flag.Here is your token : f2av5il02puano7naaf6adaaf  
+```
