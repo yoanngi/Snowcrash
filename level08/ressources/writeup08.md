@@ -1,6 +1,6 @@
-# LEVEL 08
+# LEVEL 08
 
-### Reconnaissance
+### Reconnaissance
 
 Une fois connecté, on trouve un binaire et un fichier token
 ```
@@ -14,7 +14,7 @@ d--x--x--x  1 root    users    340 Aug 30  2015 ..
 -r-x------  1 level08 level08  675 Apr  3  2012 .profile
 -rw-------  1 flag08  flag08    26 Mar  5  2016 token
 ```
-On l'analyse avec r2:
+On l'analyse le binaire avec r2:
 
 ```
 [0x080484a0]> pdf@main
