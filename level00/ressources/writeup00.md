@@ -26,3 +26,12 @@ Pour cela, le site dcode nous permet de le décodé facilement: https://www.dcod
 
 Et le mot de passe est : **nottoohardhere**
 
+
+ ```
+ level00@SnowCrash:~$ su flag00
+Password: 
+Don't forget to launch getflag !
+flag00@SnowCrash:~$ getflag 
+Check flag.Here is your token : x24ti5gi3x0ol2eh4esiuxias
+```
+
