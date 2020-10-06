@@ -117,6 +117,21 @@ On l'analyse le binaire avec r2:
 │       └─> 0x080486a2      c9             leave
 └           0x080486a3      c3             ret
 ```
+
+Si on le lance avec token : 
+```
+level08@SnowCrash:~$ ./level08 token 
+You may not access 'token'
+```
+
+Et avec un argument autre que token:
+```
+level08@SnowCrash:~$ echo "testing" > /tmp/test
+level08@SnowCrash:~$ ./level08 /tmp/test
+testing
+```
+
+
 ### Exploitation
 
 On va creer un lien symbolique entre token et notre fichier
