@@ -38,6 +38,7 @@ Meme chose mais converti:
 $ tshark -r level02.pcap -T fields -e data |xxd -r -p
 [...]
 Linux 2.6.38-8-generic-pae (::ffff:10.1.1.2) (pts/10)
+[...]
 ```
 
 On peux voir:
