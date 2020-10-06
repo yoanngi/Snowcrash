@@ -83,11 +83,6 @@ uid_t	getgid(void)
 $ gcc -shared -fPIC -m32 ressources/getuid.c -o lib.so
 $ env -i LD_PRELOAD=./lib.so ./level13_binary
 your token is 2A31L79asukciNyi8uppkEuSx
-(gdb) n
-Single stepping until exit from function main,
-which has no line number information.
-getuid
-your token is 2A31L79asukciNyi8uppkEuSx
 ```
 
 
