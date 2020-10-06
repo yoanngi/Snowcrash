@@ -36,6 +36,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> for i, v in enumerate(s):
 ...     tmp += str(chr(ord(v) - i))
 ... 
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+ValueError: chr() arg not in range(256)
 >>> tmp
 'f3iji1ju5yuevaus41q1afiuq'
 
