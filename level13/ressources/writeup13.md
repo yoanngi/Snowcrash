@@ -59,6 +59,11 @@ Pas de protection anti débug, pas de protection sur LD_PRELOAD, un appel a getu
 
 ### Exploitation
 
+On télécharge le binaire:
+```
+$ scp -P 4242 level13@192.168.56.103:/home/user/level13/level13 ./level13_binary
+```
+
 On va donc importé notre propre fonction:
 
 ```
